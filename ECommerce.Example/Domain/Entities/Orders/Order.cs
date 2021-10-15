@@ -6,10 +6,10 @@ namespace Domain.Entities.Orders
 {
     public partial class Order : BaseEntity<Guid>
     {
-        public Guid CustomerId { get; internal set; }
-        public DateTime OrderTime { get; internal set; }
-        public double TotalAmount { get; internal set; }
+        public Guid CustomerId { get; set; }
+        public DateTime OrderTime { get; set; }
+        public double TotalAmount { get; set; }
 
-        public virtual ICollection<OrderItem> Items { get; internal set; }
+        public virtual ICollection<OrderItem> Items { get; set; }
     }
 }
