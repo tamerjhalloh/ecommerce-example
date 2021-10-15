@@ -1,4 +1,4 @@
-# personel-tracker
+# e-Commerce Example
 
 This is a small project to implement an API in C# which will manage Customers and Orders.
 
