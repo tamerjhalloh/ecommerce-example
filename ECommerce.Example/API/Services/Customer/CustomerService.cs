@@ -95,6 +95,13 @@ namespace API.Services.Customer
 
             if (customer != null)
             {
+                var orderRepository = UnitOfWork.AsyncRepository<Domain.Entities.Orders.Order>();
+
+                var ordersForDeletedCustomer = await orderRepository.ListAsync(x => x.CustomerId == customer.Id);
+
+                if (ordersForDeletedCustomer.Count > 0)
+                    throw new Exception("Related orders were created using this customer. Customer can be deleted.");
+
                 await repository.DeleteAsync(customer);
                 await UnitOfWork.SaveChangesAsync();
 
