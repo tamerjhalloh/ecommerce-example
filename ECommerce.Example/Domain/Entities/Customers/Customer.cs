@@ -1,6 +1,5 @@
 ﻿using Domain.Base;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Domain.Entities.Customers

@@ -1,4 +1,5 @@
 ﻿using Domain.Base;
+using Domain.Entities.Customers;
 using System;
 using System.Collections.Generic;
 
@@ -10,6 +11,7 @@ namespace Domain.Entities.Orders
         public DateTime OrderTime { get; set; }
         public double TotalAmount { get; set; }
 
+        public virtual Customer Customer { get; set; }
         public virtual ICollection<OrderItem> Items { get; set; }
     }
 }

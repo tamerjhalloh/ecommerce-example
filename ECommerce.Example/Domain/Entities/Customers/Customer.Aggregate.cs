@@ -1,6 +1,4 @@
 ﻿using Domain.Base;
-using System;
-using System.Linq;
 
 namespace Domain.Entities.Customers
 {

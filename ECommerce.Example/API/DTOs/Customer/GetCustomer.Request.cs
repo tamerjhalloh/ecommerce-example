@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace API.DTOs.Customer
+﻿namespace API.DTOs.Customer
 {
     public class GetCustomerRequest
     {

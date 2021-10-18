@@ -1,13 +1,15 @@
-﻿using API.Services.Customer; 
+﻿using API.Services.Customer;
 using Domain.Interfaces;
 using Domain.Entities.Customers;
 using Domain.Entities.Products;
-
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Domain.Entities.Orders;
+using API.Services.Product;
+using API.Services.Order;
 
 namespace API.Extensions
 {
@@ -18,7 +20,9 @@ namespace API.Extensions
             return services
                 .AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>))
                 .AddScoped<ICustomerRepository, CustomerRepository>()
-                .AddScoped<IProductRepository, ProductRepository>();
+                .AddScoped<IProductRepository, ProductRepository>()
+                .AddScoped<IOrderRepository, OrderRepository>()
+                .AddScoped<IOrderItemRepository, OrderItemRepository>();
         }
 
         public static IServiceCollection AddUnitOfWork(this IServiceCollection services)
@@ -38,7 +42,9 @@ namespace API.Extensions
            )
         {
             return services
-                .AddScoped<CustomerService>();
+                .AddScoped<CustomerService>()
+                .AddScoped<ProductService>()
+                .AddScoped<OrderService>();
         }
     }
 }

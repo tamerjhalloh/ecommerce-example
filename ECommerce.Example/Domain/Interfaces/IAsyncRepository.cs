@@ -16,6 +16,6 @@ namespace Domain.Interfaces
 
         Task<T> GetAsync(Expression<Func<T, bool>> expression);
 
-        Task<List<T>> ListAsync(Expression<Func<T, bool>> expression);
+        Task<List<T>> ListAsync(Expression<Func<T, bool>> expression, int page = 0, int size = 100, string includeExpression = "");
     }
 }
