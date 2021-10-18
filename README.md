@@ -4,6 +4,7 @@ This is a small project to implement an API in C# which will manage Customers an
 
 Key Features
 * Customers actions.
+* Products actions. 
 * Orders actions.
 * Customers' orders actions.
 
