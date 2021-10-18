@@ -8,9 +8,13 @@ Key Features
 * Orders actions.
 * Customers' orders actions.
 
+
+
 ## How to run the project
+
+* Change DB connection string which can be located in `ECommerce.Example/API/appsettings.json` => ConnectıonStrings section
  
- Run API project and you can see swagger API UI to test API.
+* Run API project and you can see swagger API UI to test API.
 
 
 
