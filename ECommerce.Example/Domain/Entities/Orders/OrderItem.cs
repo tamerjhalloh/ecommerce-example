@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Domain.Entities.Orders
 {
-    public class OrderItem : BaseEntity<Guid>
+    public partial class OrderItem : BaseEntity<Guid>
     {
         public Guid OrderId { get; set; }
         public Guid ProductId { get; set; }

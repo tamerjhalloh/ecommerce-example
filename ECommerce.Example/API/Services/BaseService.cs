@@ -1,4 +1,6 @@
-﻿namespace API.Services
+﻿using Domain.Interfaces;
+
+namespace API.Services
 {
     public class BaseService
     {

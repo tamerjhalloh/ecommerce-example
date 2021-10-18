@@ -1,4 +1,6 @@
-﻿namespace API.Services.Order
+﻿using Domain.Interfaces;
+
+namespace API.Services.Order
 {
     public class OrderService : BaseService
     {
