@@ -9,11 +9,7 @@ Key Features
 
 ## How to run the project
  
-## Default admin login 
-When you run the project a default db and asmin user will be created
-* Username: admin@admin.com
-* Password: admin2021
-
+ Run API project and you can see swagger API UI to test API.
 
 
 
