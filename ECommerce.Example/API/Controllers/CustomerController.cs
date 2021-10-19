@@ -2,7 +2,6 @@
 using API.Services.Customer;
 using API.Services.Order;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -10,16 +9,14 @@ namespace API.Controllers
     [ApiController]
     [Route("customers")]
     public class CustomerController : ControllerBase
-    {
-
-
-        private readonly ILogger<CustomerController> _logger;
+    { 
+       
         private readonly CustomerService _service;
         private readonly OrderService _orderService;
 
-        public CustomerController(ILogger<CustomerController> logger, CustomerService service, OrderService orderService)
+        public CustomerController(CustomerService service, OrderService orderService)
         {
-            _logger = logger;
+           
             _service = service;
             _orderService = orderService;
         }
@@ -55,6 +52,11 @@ namespace API.Controllers
         [HttpGet("orders")]
         public async Task<IActionResult> GetCustomerOrders([FromQuery] GetCustomerOrdersRequest request)
         {
+            if(request.CustomerId == System.Guid.Empty)
+            {
+                throw new System.Exception("Customer Id is empty");
+            }
+
             var orders = await _orderService.SearchAsync(request);
             return Ok(orders);
         }

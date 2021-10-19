@@ -79,6 +79,11 @@ namespace API.Services.Order
 
         public async Task<AddOrderResponse> AddNewAsync(AddOrderRequest request)
         {
+            if (request.CustomerId == Guid.Empty)
+                throw new Exception("Customer Id is empty");
+
+            if (request.Items == null || !request.Items.Any())
+                throw new Exception("Order Items has to be one or more");
 
             var customerRepository = UnitOfWork.AsyncRepository<Domain.Entities.Customers.Customer>();
 

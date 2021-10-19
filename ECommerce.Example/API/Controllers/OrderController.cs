@@ -10,13 +10,11 @@ namespace API.Controllers
     [Route("orders")]
     public class OrderController : ControllerBase
     { 
-
-        private readonly ILogger<OrderController> _logger;
+         
         private readonly OrderService _service;
 
-        public OrderController(ILogger<OrderController> logger, OrderService service)
-        {
-            _logger = logger;
+        public OrderController( OrderService service)
+        { 
             _service = service;
         }
 

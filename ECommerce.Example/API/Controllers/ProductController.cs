@@ -1,7 +1,6 @@
 ﻿using API.DTOs.Product;
 using API.Services.Product;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -9,13 +8,11 @@ namespace API.Controllers
     [ApiController]
     [Route("products")]
     public class ProductController : ControllerBase
-    {
-        private readonly ILogger<ProductController> _logger;
+    { 
         private readonly ProductService _service;
 
-        public ProductController(ILogger<ProductController> logger, ProductService service)
-        {
-            _logger = logger;
+        public ProductController( ProductService service)
+        { 
             _service = service;
         }
 

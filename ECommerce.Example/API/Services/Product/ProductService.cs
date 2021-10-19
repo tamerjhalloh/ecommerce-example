@@ -34,6 +34,7 @@ namespace API.Services.Product
 
         public async Task<AddProductResponse> AddNewAsync(AddProductRequest request)
         {
+            ValidateProductName(request.Name);
             ValidateProductPrice(request.Price);
 
             // We can use AutoMapper to map objects dynamically
@@ -55,6 +56,10 @@ namespace API.Services.Product
 
         public async Task<UpdateProductResponse> UpdateAsync(UpdateProductRequest request)
         {
+            if (request.Id == Guid.Empty)
+                throw new Exception("Id is empty");
+
+            ValidateProductName(request.Name);
             ValidateProductPrice(request.Price);
 
             var repository = UnitOfWork.AsyncRepository<Domain.Entities.Products.Product>();
@@ -86,6 +91,9 @@ namespace API.Services.Product
 
         public async Task<DeleteProductResponse> DeleteAsync(DeleteProductRequest request)
         {
+            if (request.Id == Guid.Empty)
+                throw new Exception("Id is empty"); 
+
             var repository = UnitOfWork.AsyncRepository<Domain.Entities.Products.Product>();
 
             var product = await repository
@@ -117,6 +125,13 @@ namespace API.Services.Product
         }
 
         #region Helping methods
+        private void ValidateProductName(string productName)
+        {
+            if (productName == null || string.IsNullOrEmpty(productName))
+            {
+                throw new Exception("Product name is empty");
+            }
+        }
 
         private void ValidateProductPrice(double price)
         {

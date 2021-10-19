@@ -13,7 +13,7 @@ namespace API.Services.Customer
         {
 
         }
-        
+
         public async Task<List<CustomerInfoDTO>> SearchAsync(GetCustomerRequest request)
         {
             var repository = UnitOfWork.AsyncRepository<Domain.Entities.Customers.Customer>();
@@ -36,6 +36,15 @@ namespace API.Services.Customer
 
         public async Task<AddCustomerResponse> AddNewAsync(AddCustomerRequest request)
         {
+            if (string.IsNullOrEmpty(request.FirstName))
+                throw new Exception("FirstName is empty");
+
+            if (string.IsNullOrEmpty(request.LastName))
+                throw new Exception("LastName is empty");
+
+            if (string.IsNullOrEmpty(request.Address))
+                throw new Exception("Address is empty");
+
             // We can use AutoMapper to map objects dynamically
             var customer = new Domain.Entities.Customers.Customer(request.FirstName,
                  request.LastName,
@@ -58,6 +67,19 @@ namespace API.Services.Customer
 
         public async Task<UpdateCustomerResponse> UpdateAsync(UpdateCustomerRequest request)
         {
+
+            if (request.Id == Guid.Empty)
+                throw new Exception("Id is empty");
+
+            if (string.IsNullOrEmpty(request.FirstName))
+                throw new Exception("FirstName is empty");
+
+            if (string.IsNullOrEmpty(request.LastName))
+                throw new Exception("LastName is empty");
+
+            if (string.IsNullOrEmpty(request.Address))
+                throw new Exception("Address is empty");
+
             var repository = UnitOfWork.AsyncRepository<Domain.Entities.Customers.Customer>();
 
             var customer = await repository
@@ -68,7 +90,7 @@ namespace API.Services.Customer
                 customer.FirstName = request.FirstName;
                 customer.LastName = request.LastName;
                 customer.Address = request.Address;
-                customer.PostalCode = request.PostalCode; 
+                customer.PostalCode = request.PostalCode;
 
                 await repository.UpdateAsync(customer);
                 await UnitOfWork.SaveChangesAsync();
